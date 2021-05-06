@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     EditText etNote;
-    Button btnInsert,btnShow;
+    Button btnInsert,btnShow,btnFilter;
 
 
     @Override
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         etNote = findViewById(R.id.editTextNote);
         btnShow = findViewById(R.id.buttonShowList);
         btnInsert = findViewById(R.id.buttonInsertNote);
+        btnFilter = findViewById(R.id.buttonFilter);
 
         btnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
