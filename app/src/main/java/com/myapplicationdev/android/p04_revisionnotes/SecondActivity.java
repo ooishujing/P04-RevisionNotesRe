@@ -19,14 +19,26 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //TODO implement the Custom ListView
-
         setContentView(R.layout.activity_second);
         lv = findViewById(R.id.lv);
 
+        Intent intent = getIntent();
+        String filter = intent.getStringExtra("ClickFilter");
         DBHelper db = new DBHelper(SecondActivity.this);
 
         // Insert a task
         ArrayList<Note> data = db.getAllNotes();
+        if(filter.equals("true")) {
+            for (int i = 0; i < data.size(); i++) {
+                if (data.get(i).getStars() < 3) {
+                    data.remove(i);
+                }
+            }
+        }
+//        else{
+//            aa = new RevisionNotesArrayAdapter(SecondActivity.this, R.layout.row, data);
+//            lv.setAdapter(aa);
+//        }
         aa = new RevisionNotesArrayAdapter(SecondActivity.this, R.layout.row, data);
         lv.setAdapter(aa);
 

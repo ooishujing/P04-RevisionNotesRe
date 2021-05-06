@@ -54,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                intent.putExtra("ClickFilter", "false");
+                startActivity(intent);
+            }
+        });
+        btnFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                intent.putExtra("ClickFilter", "true");
                 startActivity(intent);
             }
         });
