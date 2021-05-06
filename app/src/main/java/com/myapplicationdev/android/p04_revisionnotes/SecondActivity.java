@@ -18,10 +18,9 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
         //TODO implement the Custom ListView
 
-
+        setContentView(R.layout.activity_second);
         lv = findViewById(R.id.lv);
 
         DBHelper db = new DBHelper(SecondActivity.this);
@@ -32,6 +31,7 @@ public class SecondActivity extends AppCompatActivity {
         lv.setAdapter(aa);
 
         db.close();
+
         aa.notifyDataSetChanged();
     }
 }

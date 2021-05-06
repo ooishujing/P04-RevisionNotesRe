@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // GET selected radio button info
-                if (String.valueOf(etNote.getText()).isEmpty()){
+                if (String.valueOf(etNote.getText()).trim().isEmpty()){
                     Toast.makeText(MainActivity.this,"Please fill in revision note",Toast.LENGTH_SHORT).show();
                 }else{
                     String note = String.valueOf(etNote.getText());

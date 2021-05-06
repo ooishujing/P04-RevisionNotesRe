@@ -46,16 +46,28 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	public void insertNote(String noteContent, int stars) {
 		//TODO insert the data into the database
-		SQLiteDatabase db = this.getWritableDatabase();
-		ContentValues values = new ContentValues();
-		values.put(COLOUMN_NOTE_CONTENT, noteContent);
-		values.put(COLOUMN_STARS, stars);
-		long result = db.insert(TABLE_NOTE, null,values);
-		if (result == -1){
-			Toast.makeText(context,"Insert Failed",Toast.LENGTH_SHORT).show();
+
+		boolean sameData = false;
+		ArrayList<String> noteEnhance = getNoteContent();
+
+			if (noteEnhance.contains(noteContent)){
+				sameData = true;
+			}
+		if (sameData){
+			Toast.makeText(context, "Note name must be not same", Toast.LENGTH_SHORT).show();
 		}else{
-			Toast.makeText(context,"Inserted",Toast.LENGTH_SHORT).show();
+			SQLiteDatabase db = this.getWritableDatabase();
+			ContentValues values = new ContentValues();
+			values.put(COLOUMN_NOTE_CONTENT, noteContent);
+			values.put(COLOUMN_STARS, stars);
+			long result = db.insert(TABLE_NOTE, null,values);
+			if (result == -1){
+				Toast.makeText(context,"Insert Failed",Toast.LENGTH_SHORT).show();
+			}else{
+				Toast.makeText(context,"Inserted",Toast.LENGTH_SHORT).show();
+			}
 		}
+
 	}
 
 	public ArrayList<Note> getAllNotes() {
@@ -86,7 +98,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		// Create an ArrayList that holds String objects
         ArrayList<String> notes = new ArrayList<String>();
         // Select all the notes' content
-        String selectQuery = "SELECT * " + "FROM " + TABLE_NOTE;
+        String selectQuery = "SELECT "+ COLOUMN_NOTE_CONTENT + " FROM " + TABLE_NOTE;
 
         // Get the instance of database to read
         SQLiteDatabase db = this.getReadableDatabase();
@@ -96,10 +108,10 @@ public class DBHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             // Loop while moveToNext() points to next row and returns true;
             // moveToNext() returns false when no more next row to move to
-			notes.add(cursor.getString(0));
+
             do {
 
-
+				notes.add(cursor.getString(0));
             } while (cursor.moveToNext());
         }
         // Close connection
