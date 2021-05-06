@@ -6,16 +6,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
 
+	private Context context;
 	//TODO Define the Database properties
-	private static final String DATABASE_NAME = "Notes";
+	private static final String DATABASE_NAME = "Notes.db";
 	private static final int DATABASE_VERSION = 1;
 
-	private static final String TABLE_NOTE = "note";
+	private static final String TABLE_NOTE = "Note";
 	private static final String COLOUMN_ID = "id";
 	private static final String COLOUMN_NOTE_CONTENT = "note_content";
 	private static final String COLOUMN_STARS = "stars";
@@ -24,6 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		this.context = context;
 	}
 
 	@Override
@@ -47,7 +50,12 @@ public class DBHelper extends SQLiteOpenHelper {
 		ContentValues values = new ContentValues();
 		values.put(COLOUMN_NOTE_CONTENT, noteContent);
 		values.put(COLOUMN_STARS, stars);
-		db.insert(TABLE_NOTE, null,values);
+		long result = db.insert(TABLE_NOTE, null,values);
+		if (result == -1){
+			Toast.makeText(context,"Insert Failed",Toast.LENGTH_SHORT).show();
+		}else{
+			Toast.makeText(context,"Inserted",Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	public ArrayList<Note> getAllNotes() {

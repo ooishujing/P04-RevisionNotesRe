@@ -35,13 +35,13 @@ public class RevisionNotesArrayAdapter extends ArrayAdapter<Note> {
 		Note note = notes.get(position);
 
 		//Check if the property for starts >= 5, if so, "light" up the stars
-		if (/*stars >= 5*/) {
-			iv5.setImageResource(android.R.drawable.btn_star_big_on);
-			iv4.setImageResource(android.R.drawable.btn_star_big_on);
-			iv3.setImageResource(android.R.drawable.btn_star_big_on);
-			iv2.setImageResource(android.R.drawable.btn_star_big_on);
-			iv1.setImageResource(android.R.drawable.btn_star_big_on);
-		}
+//		if (/*stars >= 5*/) {
+//			iv5.setImageResource(android.R.drawable.btn_star_big_on);
+//			iv4.setImageResource(android.R.drawable.btn_star_big_on);
+//			iv3.setImageResource(android.R.drawable.btn_star_big_on);
+//			iv2.setImageResource(android.R.drawable.btn_star_big_on);
+//			iv1.setImageResource(android.R.drawable.btn_star_big_on);
+//		}
 
 		return rowView;
 	}
