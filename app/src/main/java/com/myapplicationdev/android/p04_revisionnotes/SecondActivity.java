@@ -13,7 +13,7 @@ public class SecondActivity extends AppCompatActivity {
 
     ListView lv;
     ArrayAdapter<Note> aa;
-    ArrayList<Note> note;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +26,10 @@ public class SecondActivity extends AppCompatActivity {
 
         // Insert a task
         ArrayList<Note> data = db.getAllNotes();
-        
+        aa = new RevisionNotesArrayAdapter(SecondActivity.this, R.layout.row, data);
+        lv.setAdapter(aa);
 
         db.close();
-
-        aa = new RevisionNotesArrayAdapter(SecondActivity.this, R.layout.row, note);
-        lv.setAdapter(aa);
 
         aa.notifyDataSetChanged();
     }
