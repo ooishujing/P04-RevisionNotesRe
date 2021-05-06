@@ -25,5 +25,4 @@ public class Note {
     public int getStars() {
         return stars;
     }
-
 }
