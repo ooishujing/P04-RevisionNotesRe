@@ -43,9 +43,9 @@ public class RevisionNotesArrayAdapter extends ArrayAdapter<Note> {
 		iv5 = rowView.findViewById(R.id.imageView5star);
 		Note note = notes.get(position);
 
-		tvNote.setText("Item: " + note.getId());
+		tvNote.setText("Revision Note: #" + note.getId());
 		//Check if the property for starts >= 5, if so, "light" up the stars
-		if (note.getStars() >= 5) {
+		if (note.getStars() > 0) {
 			if (note.getStars() == 1) {
 				iv1.setImageResource(android.R.drawable.btn_star_big_on);
 				iv2.setImageResource(android.R.drawable.btn_star_big_off);

@@ -21,6 +21,7 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
         //TODO implement the Custom ListView
 
+
         lv = findViewById(R.id.lv);
 
         DBHelper db = new DBHelper(SecondActivity.this);
