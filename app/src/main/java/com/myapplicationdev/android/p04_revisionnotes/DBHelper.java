@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
+
 public class DBHelper extends SQLiteOpenHelper {
 
 	private Context context;
