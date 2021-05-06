@@ -17,8 +17,7 @@ public class RevisionNotesArrayAdapter extends ArrayAdapter<Note> {
 	ArrayList<Note> notes;
 	int resource;
 	ImageView iv1, iv2, iv3, iv4, iv5;
-	RadioGroup rg;
-	RadioButton rb;
+	TextView tvNote;
 
 
 	public RevisionNotesArrayAdapter(Context context, int resource, ArrayList<Note> notes) {
@@ -36,26 +35,50 @@ public class RevisionNotesArrayAdapter extends ArrayAdapter<Note> {
 		View rowView = inflater.inflate(resource, parent, false);
 
 		//Match the UI components with Java variables
-		rg = rowView.findViewById(R.id.radioGroupStars);
-		int selectedButtonId = rg.getCheckedRadioButtonId();
-		rb = rowView.findViewById(selectedButtonId);
+		tvNote = rowView.findViewById(R.id.textViewNote);
+		iv1 = rowView.findViewById(R.id.imageView1star);
+		iv2 = rowView.findViewById(R.id.imageView2star);
+		iv3 = rowView.findViewById(R.id.imageView3star);
+		iv4 = rowView.findViewById(R.id.imageView4star);
+		iv5 = rowView.findViewById(R.id.imageView5star);
 		Note note = notes.get(position);
 
+		tvNote.setText("Item: " + note.getId());
 		//Check if the property for starts >= 5, if so, "light" up the stars
 		if (note.getStars() >= 5) {
 			if (note.getStars() == 1) {
 				iv1.setImageResource(android.R.drawable.btn_star_big_on);
+				iv2.setImageResource(android.R.drawable.btn_star_big_off);
+				iv3.setImageResource(android.R.drawable.btn_star_big_off);
+				iv4.setImageResource(android.R.drawable.btn_star_big_off);
+				iv5.setImageResource(android.R.drawable.btn_star_big_off);
 			}
 			else if (note.getStars() == 2) {
+				iv1.setImageResource(android.R.drawable.btn_star_big_on);
 				iv2.setImageResource(android.R.drawable.btn_star_big_on);
+				iv3.setImageResource(android.R.drawable.btn_star_big_off);
+				iv4.setImageResource(android.R.drawable.btn_star_big_off);
+				iv5.setImageResource(android.R.drawable.btn_star_big_off);
 			}
 			else if (note.getStars() == 3) {
+				iv1.setImageResource(android.R.drawable.btn_star_big_on);
+				iv2.setImageResource(android.R.drawable.btn_star_big_on);
 				iv3.setImageResource(android.R.drawable.btn_star_big_on);
+				iv4.setImageResource(android.R.drawable.btn_star_big_off);
+				iv5.setImageResource(android.R.drawable.btn_star_big_off);
 			}
 			else if (note.getStars() == 4) {
+				iv1.setImageResource(android.R.drawable.btn_star_big_on);
+				iv2.setImageResource(android.R.drawable.btn_star_big_on);
+				iv3.setImageResource(android.R.drawable.btn_star_big_on);
 				iv4.setImageResource(android.R.drawable.btn_star_big_on);
+				iv5.setImageResource(android.R.drawable.btn_star_big_off);
 			}
 			else {
+				iv1.setImageResource(android.R.drawable.btn_star_big_on);
+				iv2.setImageResource(android.R.drawable.btn_star_big_on);
+				iv3.setImageResource(android.R.drawable.btn_star_big_on);
+				iv4.setImageResource(android.R.drawable.btn_star_big_on);
 				iv5.setImageResource(android.R.drawable.btn_star_big_on);
 			}
 		}
