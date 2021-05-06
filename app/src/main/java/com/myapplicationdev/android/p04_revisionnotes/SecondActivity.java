@@ -28,18 +28,19 @@ public class SecondActivity extends AppCompatActivity {
 
         // Insert a task
         ArrayList<Note> data = db.getAllNotes();
-        if(filter.equals("true")) {
-            for (int i = 0; i < data.size(); i++) {
-                if (data.get(i).getStars() < 3) {
-                    data.remove(i);
-                }
+        ArrayList<Note> filtered = new ArrayList<Note>();
+        for(int i = 0; i < data.size(); i++){
+            Note Current = data.get(i);
+            if (Current.getStars() >= 3) {
+                filtered.add(Current);
             }
         }
-//        else{
-//            aa = new RevisionNotesArrayAdapter(SecondActivity.this, R.layout.row, data);
-//            lv.setAdapter(aa);
-//        }
-        aa = new RevisionNotesArrayAdapter(SecondActivity.this, R.layout.row, data);
+        if(filter.equals("true")) {
+            aa = new RevisionNotesArrayAdapter(SecondActivity.this, R.layout.row, filtered);
+        }
+        else{
+            aa = new RevisionNotesArrayAdapter(SecondActivity.this, R.layout.row, data);
+        }
         lv.setAdapter(aa);
 
         db.close();
