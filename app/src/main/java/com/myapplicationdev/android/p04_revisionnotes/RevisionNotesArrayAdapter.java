@@ -46,6 +46,4 @@ public class RevisionNotesArrayAdapter extends ArrayAdapter<Note> {
 		return rowView;
 	}
 
-
-
 }

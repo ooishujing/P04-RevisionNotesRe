@@ -22,35 +22,17 @@ public class SecondActivity extends AppCompatActivity {
 
         lv = findViewById(R.id.lv);
 
-        Intent i = getIntent();
-
-        // get the String array named "info" we passed in
-        ArrayList<String> data = i.getStringArrayListExtra("data");
-        ArrayList<String> star = i.getStringArrayListExtra("star");
-
-        //ArrayList<String> data = db.getNoteContent();
-        //ArrayList<String> star = db.getStarContent();
-
-        System.out.println(data);
-        System.out.println(star);
-
-        note = new ArrayList<Note>();
-
-        for (int a = 0; a < data.size(); a++) {
-            String one = data.get(a);
-            int two = Integer.valueOf(star.get(a));
-            note.add(new Note(a, one, two));
-        }
-
         DBHelper db = new DBHelper(SecondActivity.this);
-        note = db.getAllNotes();
-        System.out.println(db.getAllNotes());
+
+        // Insert a task
+        ArrayList<Note> data = db.getAllNotes();
+        
+
         db.close();
 
         aa = new RevisionNotesArrayAdapter(SecondActivity.this, R.layout.row, note);
         lv.setAdapter(aa);
-        //System.out.println(db.getAllNotes());
-        aa.notifyDataSetChanged();
 
+        aa.notifyDataSetChanged();
     }
 }
